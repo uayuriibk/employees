@@ -32,15 +32,7 @@ public class Main {
 			e1.printStackTrace();
 		}
 		
-		try {
-			rwe.readEmployeesFromFile(fileName);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		rwe.readEmployeesFromFile(fileName);
 		
 		for (Employee e: collection)
 			System.out.println(e.getName()+" "+e.getSalary());
