@@ -20,12 +20,33 @@ public class ReadingWritingEmployees {
 	List<Employee> collection;
 	
 	@SuppressWarnings("unchecked")
-	public void readEmployeesFromFile(String fileName) throws FileNotFoundException, IOException, ClassNotFoundException {	
+	public void readEmployeesFromFile(String fileName) {
+		
 		collection = new ArrayList<Employee>();
-		ois = new ObjectInputStream(new FileInputStream(fileName));	
-		collection = (List<Employee>) ois.readObject();
+		
+		try {
+			ois = new ObjectInputStream(new FileInputStream(fileName));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			collection = (List<Employee>) ois.readObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		System.out.println("The collection has been read from the file!");
-		ois.close();
+		
+		try {
+			ois.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void writeEmployeesIntoFile(List<Employee> collection, String fileName) throws FileNotFoundException, IOException{
